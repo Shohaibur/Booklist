@@ -11,8 +11,8 @@ class Book {
 }
 
 class UI {
-  constructor() {}
-  addToBookList(book) {
+  
+ static addToBookList(book) {
     let list = document.querySelector("#book-list");
     let row = document.createElement("tr");
     row.innerHTML = `<td>${book.title}</td>
@@ -23,13 +23,13 @@ class UI {
     //console.log(row);
   }
 
-  clearFields() {
+  static clearFields() {
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
   }
 
-  showAlert(message, className) {
+ static  showAlert(message, className) {
     let div = document.createElement("div");
     div.className = `alert ${className}`;
     div.appendChild(document.createTextNode(message));
@@ -41,9 +41,10 @@ class UI {
     }, 3000);
   }
 
-  deleteFromBook(target) {
+ static deleteFromBook(target) {
     if (target.hasAttribute("href")) {
       target.parentNode.parentNode.remove(); //parentElement
+      UI.showAlert("Book Removed!", "success");
     }
   }
 }
@@ -62,9 +63,9 @@ function newBook(e) {
     ui.showAlert("Please fill all the fields!", "error");
   } else {
     let book = new Book(title, author, isbn);
-    ui.addToBookList(book);
-    ui.clearFields();
-    ui.showAlert("Book added", "success");
+    UI.addToBookList(book);
+    UI.clearFields();
+    UI.showAlert("Book added", "success");
   }
 
   //console.log(book)
@@ -73,8 +74,8 @@ function newBook(e) {
 }
 
 function removeBook(e) { //todo alerts removed when clicked whole added body
-  let ui = new UI();
-  ui.deleteFromBook(e.target);
-  ui.showAlert("Book Removed!", "success");
+  
+  UI.deleteFromBook(e.target);
+  
   e.preventDefault();
 }

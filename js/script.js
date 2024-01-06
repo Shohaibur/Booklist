@@ -49,6 +49,21 @@ class UI {
   }
 }
 
+//local storage class
+class store{
+  static getBooks(){
+    let books ;
+    if (localStorage.getItem("books")==null){
+      books=[];
+    }else{
+      books = JSON.parse(localStorage.getItem("books"));
+    }
+    return books;
+  }
+  
+}
+
+
 form.addEventListener("submit", newBook);
 bookList.addEventListener("click", removeBook);
 

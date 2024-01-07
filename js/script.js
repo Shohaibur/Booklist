@@ -60,6 +60,9 @@ class store{
     }
     return books;
   }
+  static addBook(books){
+    let books = Store
+  }
   
 }
 

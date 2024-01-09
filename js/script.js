@@ -61,7 +61,10 @@ class store{
     return books;
   }
   static addBook(books){
-    let books = Store
+    let books = Store.getBooks();
+    books.push(book);
+
+    localStorage.setItem("books",JSON.stringify(books));
   }
   
 }

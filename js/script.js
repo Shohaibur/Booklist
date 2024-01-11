@@ -66,12 +66,20 @@ class store{
 
     localStorage.setItem("books",JSON.stringify(books));
   }
+  static displayBooks(){
+    let books = Store.getBooks();
+
+    books.forEach(book=>{
+      UI.addToBookList(book);
+    });
+  }
   
 }
 
-
+//event listener
 form.addEventListener("submit", newBook);
 bookList.addEventListener("click", removeBook);
+document.addEventListener("DOMContentLoaded",Store.displayBooks());
 
 function newBook(e) {
   let title = document.querySelector("#title").value,

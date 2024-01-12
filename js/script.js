@@ -73,7 +73,17 @@ class store{
       UI.addToBookList(book);
     });
   }
-  
+
+  static removeBook(isbn) //call by unique number and remove
+  {
+    let books = Store.getBooks();
+    books.forEach((books,index)=>{
+      if (book.isbn === isbn){
+        books.splice(index,1);
+      }
+    });
+    localStorage.setItem("books", JSON.stringify(books));
+  }
 }
 
 //event listener

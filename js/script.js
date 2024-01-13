@@ -44,13 +44,14 @@ class UI {
  static deleteFromBook(target) {
     if (target.hasAttribute("href")) {
       target.parentNode.parentNode.remove(); //parentElement
+      store.removeBook(target.parentElement.previousElementSibling.textContent.trim());
       UI.showAlert("Book Removed!", "success");
     }
   }
 }
 
 //local storage class
-class store{
+class Store{
   static getBooks(){
     let books ;
     if (localStorage.getItem("books")==null){
@@ -60,7 +61,7 @@ class store{
     }
     return books;
   }
-  static addBook(books){
+  static addBook(book){
     let books = Store.getBooks();
     books.push(book);
 
@@ -99,7 +100,7 @@ function newBook(e) {
   let ui = new UI();
 
   if (title === "" || author === "" || isbn === "") {
-    ui.showAlert("Please fill all the fields!", "error");
+    UI.showAlert("Please fill all the fields!", "error");
   } else {
     let book = new Book(title, author, isbn);
     UI.addToBookList(book);
